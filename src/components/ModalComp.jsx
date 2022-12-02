@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleModal({ data, open, handleClose, userObj }) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const mapData = [...data];
+  let mapData = [...data];
+  mapData = mapData.filter((item) => typeof item !== "string");
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h4 className="modalHeading">Available Connections</h4>

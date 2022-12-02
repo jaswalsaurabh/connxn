@@ -79,7 +79,9 @@ const AddConnection = ({ users, from, handleSnackbarOpen, userObj }) => {
 
   useEffect(() => {
     let temp = [...myConnxn];
-    if (typeof temp[0] === "string") {
+    if (temp.length > 1)
+      temp = temp = temp.filter((item) => typeof item !== "string");
+    if (myConnxn.size == 1 && typeof temp[0] === "string") {
       handleSnackbarOpen("no connection found", "errorDark");
     } else if (myConnxn.size > 0 && typeof temp[0] !== "string") {
       setOpen(true);
