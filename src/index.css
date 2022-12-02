@@ -74,26 +74,53 @@ body {
 .addPeople {
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 1rem;
   padding: 5rem;
   background-color: white;
 }
 
 .input {
-  margin: .6rem 0 !important;
+  margin: 0.6rem 0 !important;
 }
 
-.connections{
-display: flex;
-flex-direction: column;
-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-border-radius: 1rem;
-padding: 4rem;
-background-color: white;
+.connections {
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 1rem;
+  padding: 4rem;
+  background-color: white;
 }
 
-.form__div{
+.form__div {
   display: flex;
   flex-direction: column;
 }
+
+.renderDiv {
+  display: flex;
+}
+
+.modalHeading {
+  font-size: 1.5rem;
+}
+
+.modalSub {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.suggestion > span {
+  margin: 0 0.4rem;
+}
+
+

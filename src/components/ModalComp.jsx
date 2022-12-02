@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import useTraverse from "../hooks/useTraverse";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -9,7 +10,7 @@ function rand() {
 
 function getModalStyle() {
   const top = 50 + rand();
-  const left = 50 + rand();
+  const left = 48 + rand();
 
   return {
     top: `${top}%`,
@@ -21,7 +22,8 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    width: 400,
+    width: "auto",
+    minWidth: 400,
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
@@ -40,14 +42,23 @@ export default function SimpleModal({ data, open, handleOpen, handleClose }) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h4>Available Connections</h4>
-      {mapData.map((item, index) => (
-        <>
-          <p>{index + 1}</p>
-          {item.map((key) => (
-            <p>{userObj[key]}</p>
-          ))}
-        </>
+      <h4 className="modalHeading">Available Connections</h4>
+      {mapData.map((item, ind) => (
+        <div key={ind}>
+          <p className="modalSub">Connection {ind + 1}</p>
+          <div className="renderDiv">
+            {item.map((key, index) => (
+              <p key={index} className="suggestion">
+                {userObj[key]}{" "}
+                {index < item.length - 1 && (
+                  <span>
+                    <PersonAddIcon />
+                  </span>
+                )}{" "}
+              </p>
+            ))}
+          </div>
+        </div>
       ))}
     </div>
   );
