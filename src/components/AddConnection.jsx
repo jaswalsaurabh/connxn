@@ -24,7 +24,6 @@ const AddConnection = ({ users, from, handleSnackbarOpen, userObj }) => {
   const [open, setOpen] = React.useState(false);
 
   const { handleConnection, getConxn, myConnxn } = useTraverse();
-  // console.log("user obj >>", userObj);
   const [input, setInput] = useState({
     source: users[0]?.name || "",
     target: users[1]?.name || "",
@@ -46,8 +45,6 @@ const AddConnection = ({ users, from, handleSnackbarOpen, userObj }) => {
     setInput({ ...input, [name]: value });
   }
 
-  // console.log("this si conncxn data >>", myConnxn);
-
   // console.log("userobj conxn page", userObj);
 
   async function handleSubmit() {
@@ -62,17 +59,13 @@ const AddConnection = ({ users, from, handleSnackbarOpen, userObj }) => {
         targetId = item.id;
       }
     });
-    // console.log("sourceId", sourceId, "targetId", targetId);
     if (from) {
       let a = [];
       let b = new Set([]);
       if (sourceId === targetId) {
         handleSnackbarOpen("source and target cannot be same", "errorDark");
       } else {
-        let res = await getConxn(sourceId, targetId, a, b);
-        // if(typeof res === "string"){
-        //   handleSnackbarOpen("no connection found", "errorDark");
-        // }
+        getConxn(sourceId, targetId, a, b);
       }
     } else {
       if (sourceId === targetId) {
@@ -85,7 +78,10 @@ const AddConnection = ({ users, from, handleSnackbarOpen, userObj }) => {
   }
 
   useEffect(() => {
-    if (myConnxn.size > 0) {
+    let temp = [...myConnxn];
+    if (typeof temp[0] === "string") {
+      handleSnackbarOpen("no connection found", "errorDark");
+    } else if (myConnxn.size > 0 && typeof temp[0] !== "string") {
       setOpen(true);
     }
   }, [myConnxn]);

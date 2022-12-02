@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import useTraverse from "../hooks/useTraverse";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 function rand() {
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({ data, open, handleClose,userObj }) {
+export default function SimpleModal({ data, open, handleClose, userObj }) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const mapData = [...data];
@@ -42,16 +41,17 @@ export default function SimpleModal({ data, open, handleClose,userObj }) {
         <div key={ind}>
           <p className="modalSub">Connection {ind + 1}</p>
           <div className="renderDiv">
-            {item.map((key, index) => (
-              <p key={index} className="suggestion">
-                {userObj[key]}{" "}
-                {index < item.length - 1 && (
-                  <span>
-                    <PersonAddIcon />
-                  </span>
-                )}{" "}
-              </p>
-            ))}
+            {typeof item !== "string" &&
+              item?.map((key, index) => (
+                <p key={index} className="suggestion">
+                  {userObj[key]}{" "}
+                  {index < item.length - 1 && (
+                    <span>
+                      <PersonAddIcon />
+                    </span>
+                  )}{" "}
+                </p>
+              ))}
           </div>
         </div>
       ))}

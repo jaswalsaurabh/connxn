@@ -77,12 +77,14 @@ const useTraverse = () => {
 
   function getConxn(source, target, arr, set) {
     let friends = findFriend(source);
+    if (friends.length === 0 && set.size == 0) {
+      setMyConnxn(set.add("error"))
+    }
     if (source === target) {
       arr = [...arr, source];
       setMyConnxn(set.add(arr));
       return arr;
-    }
-    if (friends.length > 0 && !arr.includes(source)) {
+    } else if (friends.length > 0 && !arr.includes(source)) {
       arr = [...arr, source];
 
       friends.forEach((item) => {
