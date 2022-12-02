@@ -1,6 +1,7 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import useTraverse from "../hooks/useTraverse";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -19,40 +20,43 @@ function getModalStyle() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    position: 'absolute',
+    position: "absolute",
     width: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
 }));
 
-export default function SimpleModal() {
+export default function SimpleModal({ data, open, handleOpen, handleClose }) {
+  const { myConnxn, userObj } = useTraverse();
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState(false);
+  const mapData = [...data]
+  function getResArray() {
+    let temp = users;
+    // temp.forEach((item)=>{
+    //   if(item.id===)
+    // })
+  }
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  console.log("nas>> new obj ",mapData);
+  console.log("nas>> userobj obj ",userObj);
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-     <h4>Available Connections</h4>
-     
+      <h4>Available Connections</h4>
+      {mapData.map((item)=>(
+        item.map((key)=>(
+          {/* console.log(">>888",userObj[key]) */}
+        ))
+      ))}
     </div>
   );
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
       <Modal
         open={open}
         onClose={handleClose}

@@ -5,8 +5,9 @@ import {
   makeStyles,
   Select,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useTraverse from "../hooks/useTraverse";
+import SimpleModal from "./ModalComp";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,11 +21,21 @@ const useStyles = makeStyles((theme) => ({
 
 const AddConnection = ({ users, from }) => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
   const { handleConnection, getConxn, myConnxn } = useTraverse();
   const [input, setInput] = useState({
     source: users[0].name,
     target: users[1].name,
   });
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -52,13 +63,25 @@ const AddConnection = ({ users, from }) => {
     }
   }
 
+  useEffect(() => {
+    if (myConnxn.size > 0) {
+      setOpen(true);
+    }
+  }, [myConnxn]);
+
   console.log("myuser", users);
 
-  console.log("myConnxn", myConnxn);
+  console.log("myConnxn", myConnxn.size);
 
   return (
     <div className="connections">
       <h2>{from ? "Find Connection" : "Add Connection"}</h2>
+        <SimpleModal
+          data={myConnxn}
+          handleClose={handleClose}
+          handleOpen={handleOpen}
+          open={open}
+        />
       {users.length > 0 ? (
         <div className="form__div">
           <FormControl className={classes.formControl}>

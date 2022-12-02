@@ -6,15 +6,11 @@ import Navbar from "./components/Navbar";
 import useTraverse from "./hooks/useTraverse";
 
 const App = () => {
-  const { addUser, users } = useTraverse();
+  const { addUser, users,myConnxn } = useTraverse();
 
   function onCreate(value) {
     addUser(users, value);
   }
-
-
-
-  console.log("users>>", users);
 
   return (
     <div>
@@ -23,7 +19,6 @@ const App = () => {
       <AddPeople onCreate={onCreate} />
       <AddConnection users={users} />
       <AddConnection users={users} from="find" />
-      <SimpleModal/>
       </div>
     </div>
   );

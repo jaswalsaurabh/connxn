@@ -17,6 +17,7 @@ const AddPeople = ({ onCreate }) => {
       <TextField
         className="input"
         variant={"outlined"}
+        autoFocus
         color="primary"
         type={"text"}
         size="small"

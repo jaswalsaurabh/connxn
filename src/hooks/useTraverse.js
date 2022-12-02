@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connData } from "../data/connectionData";
 
 const useTraverse = () => {
   const [users, setUsers] = useState(connData);
+  const [userObj, setUserObj] = useState({});
   const [myConnxn, setMyConnxn] = useState(new Set([]));
+
+  function parseIntoObj() {
+    let temp = {};
+    users.forEach((item) => {
+      temp[item.id] = item.name;
+    });
+    setUserObj({ ...temp });
+  }
+
+  useEffect(() => {
+    parseIntoObj();
+  }, [users]);
 
   function addUser(tree, value) {
     if (tree.length > 0) {
