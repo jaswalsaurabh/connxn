@@ -10,7 +10,7 @@ function rand() {
 
 function getModalStyle() {
   const top = 50 + rand();
-  const left = 48 + rand();
+  const left = 50 + rand();
 
   return {
     top: `${top}%`,
@@ -31,14 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({ data, open, handleOpen, handleClose }) {
-  const { myConnxn, userObj } = useTraverse();
+export default function SimpleModal({ data, open, handleClose }) {
+  const { userObj } = useTraverse();
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const mapData = [...data];
-
-  console.log("nas>> new obj ", mapData);
-  console.log("nas>> userobj obj ", userObj);
 
   const body = (
     <div style={modalStyle} className={classes.paper}>

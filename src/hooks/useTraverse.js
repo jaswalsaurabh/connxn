@@ -43,7 +43,7 @@ const useTraverse = () => {
   function handleConnection(tree, source, target) {
     tree.forEach((item) => {
       if (item.id === target) {
-        if (!item.connections.includes(source)) {
+        if (!item.connections.includes(source) && item.id !== source) {
           item.connections.push(source);
         }
       }

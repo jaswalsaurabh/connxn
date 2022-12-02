@@ -39,16 +39,6 @@ body {
   margin: 4rem 0;
 }
 
-.about {
-  display: flex;
-  width: 90%;
-  background-color: #040e22;
-  min-height: 60vh;
-  height: 80vh;
-  border-radius: 1rem;
-  margin-top: 2rem;
-}
-
 .about__text {
   width: 40%;
 }
