@@ -15,16 +15,26 @@ const useTraverse = () => {
   }
 
   useEffect(() => {
+    // console.log("effect users",users);
+    // console.log("called eefect");
     parseIntoObj();
+    // console.log("called userobj",userObj);
   }, [users]);
 
+  // console.log("userObj", userObj);
+
   function addUser(tree, value) {
+    let temp = userObj;
+    let id = new Date().getTime();
     if (tree.length > 0) {
       tree.unshift({
-        id: new Date().getTime(),
+        id,
         name: value,
         connections: [],
       });
+      temp[id] = value;
+      setUserObj({ ...temp });
+
       setUsers([...tree]);
       return tree;
     } else {
@@ -62,6 +72,8 @@ const useTraverse = () => {
     }
     return a;
   }
+
+  // console.log("data>>conn", myConnxn);
 
   function getConxn(source, target, arr, set) {
     let friends = findFriend(source);

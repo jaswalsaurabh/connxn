@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 
-const AddPeople = ({ onCreate }) => {
+const AddPeople = ({ onCreate, handleSnackbarOpen }) => {
   const [name, setName] = useState("");
 
   function handleClick() {
     if (name.length > 0) {
       setName("");
       onCreate(name);
+      handleSnackbarOpen("user created successfully", "successDark");
     }
   }
 
@@ -25,7 +26,12 @@ const AddPeople = ({ onCreate }) => {
         onChange={(e) => setName(e.target.value)}
         placeholder="person's name.."
       />
-      <Button variant={"contained"} color={"primary"} className="button"  onClick={handleClick}>
+      <Button
+        variant={"contained"}
+        color={"primary"}
+        className="button"
+        onClick={handleClick}
+      >
         Submit
       </Button>
     </div>

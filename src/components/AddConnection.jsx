@@ -19,15 +19,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddConnection = ({ users, from }) => {
+const AddConnection = ({ users, from, handleSnackbarOpen, userObj }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const { handleConnection, getConxn, myConnxn } = useTraverse();
+  // console.log("user obj >>", userObj);
   const [input, setInput] = useState({
-    source: users[0].name,
-    target: users[1].name,
+    source: users[0]?.name || "",
+    target: users[1]?.name || "",
   });
+
+  // console.log("users", users);
+  // console.log("input", input);
 
   const handleOpen = () => {
     setOpen(true);
@@ -42,7 +46,11 @@ const AddConnection = ({ users, from }) => {
     setInput({ ...input, [name]: value });
   }
 
-  function handleSubmit() {
+  // console.log("this si conncxn data >>", myConnxn);
+
+  // console.log("userobj conxn page", userObj);
+
+  async function handleSubmit() {
     let temp = users,
       sourceId,
       targetId;
@@ -54,12 +62,25 @@ const AddConnection = ({ users, from }) => {
         targetId = item.id;
       }
     });
+    // console.log("sourceId", sourceId, "targetId", targetId);
     if (from) {
       let a = [];
       let b = new Set([]);
-      getConxn(sourceId, targetId, a, b);
+      if (sourceId === targetId) {
+        handleSnackbarOpen("source and target cannot be same", "errorDark");
+      } else {
+        let res = await getConxn(sourceId, targetId, a, b);
+        // if(typeof res === "string"){
+        //   handleSnackbarOpen("no connection found", "errorDark");
+        // }
+      }
     } else {
-      handleConnection(users, sourceId, targetId);
+      if (sourceId === targetId) {
+        handleSnackbarOpen("source and target cannot be same", "errorDark");
+      } else {
+        handleSnackbarOpen("connection added ", "successDark");
+        handleConnection(users, sourceId, targetId);
+      }
     }
   }
 
@@ -69,19 +90,16 @@ const AddConnection = ({ users, from }) => {
     }
   }, [myConnxn]);
 
-  console.log("myuser", users);
-
-  console.log("myConnxn", myConnxn.size);
-
   return (
     <div className="connections">
       <h2>{from ? "Find Connection" : "Add Connection"}</h2>
-        <SimpleModal
-          data={myConnxn}
-          handleClose={handleClose}
-          handleOpen={handleOpen}
-          open={open}
-        />
+      <SimpleModal
+        data={myConnxn}
+        userObj={userObj}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        open={open}
+      />
       {users.length > 0 ? (
         <div className="form__div">
           <FormControl className={classes.formControl}>
