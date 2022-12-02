@@ -79,7 +79,7 @@ const useTraverse = () => {
     }
   }
 
-  return { addUser, handleConnection, getConxn, myConnxn, users };
+  return { addUser, handleConnection, getConxn, myConnxn, users, userObj };
 };
 
 export default useTraverse;

@@ -33,24 +33,21 @@ export default function SimpleModal({ data, open, handleOpen, handleClose }) {
   const { myConnxn, userObj } = useTraverse();
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
-  const mapData = [...data]
-  function getResArray() {
-    let temp = users;
-    // temp.forEach((item)=>{
-    //   if(item.id===)
-    // })
-  }
+  const mapData = [...data];
 
-  console.log("nas>> new obj ",mapData);
-  console.log("nas>> userobj obj ",userObj);
+  console.log("nas>> new obj ", mapData);
+  console.log("nas>> userobj obj ", userObj);
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h4>Available Connections</h4>
-      {mapData.map((item)=>(
-        item.map((key)=>(
-          {/* console.log(">>888",userObj[key]) */}
-        ))
+      {mapData.map((item, index) => (
+        <>
+          <p>{index + 1}</p>
+          {item.map((key) => (
+            <p>{userObj[key]}</p>
+          ))}
+        </>
       ))}
     </div>
   );
