@@ -63,11 +63,13 @@ body {
 
 .addPeople {
   display: flex;
+  height: 320px;
+  width: 300px;
   flex-direction: column;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 1rem;
-  padding: 5rem;
+  padding: 5rem 3rem;
   background-color: white;
 }
 
@@ -77,6 +79,8 @@ body {
 
 .connections {
   display: flex;
+  height: 320px;
+  width: 300px;
   flex-direction: column;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -111,6 +115,16 @@ body {
 
 .suggestion > span {
   margin: 0 0.4rem;
+}
+
+.listUser{
+  display: flex;
+}
+
+.listUser > p{
+  margin: 0 .2rem;
+  font-style:oblique;
+  font-weight: bold;
 }
 
 

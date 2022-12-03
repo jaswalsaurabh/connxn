@@ -3,13 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50 ;
+  const left = 50;
 
   return {
     top: `${top}%`,
@@ -23,6 +20,8 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     width: "auto",
     minWidth: 400,
+    maxHeight:"400px",
+    overflowY:"scroll",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
@@ -33,8 +32,11 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleModal({ data, open, handleClose, userObj }) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
+  
   let mapData = [...data];
   mapData = mapData.filter((item) => typeof item !== "string");
+
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h4 className="modalHeading">Available Connections</h4>

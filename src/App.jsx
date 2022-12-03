@@ -3,10 +3,11 @@ import AddConnection from "./components/AddConnection";
 import AddPeople from "./components/AddPeople";
 import Navbar from "./components/Navbar";
 import OpenSnackbar from "./components/SnackBarComp";
+import UsersComp from "./components/UsersComp";
 import useTraverse from "./hooks/useTraverse";
 
 const App = () => {
-  const { addUser, users,userObj } = useTraverse();
+  const { addUser, users, userObj } = useTraverse();
 
   const [snackbarDetails, setSnackbarDetails] = useState({
     message: "",
@@ -45,6 +46,7 @@ const App = () => {
           from="find"
           userObj={userObj}
         />
+        <UsersComp users={users} userObj={userObj} />
       </div>
       {snackbarOpen && (
         <OpenSnackbar
