@@ -2,7 +2,7 @@ import React from "react";
 
 const UsersComp = ({ users, userObj }) => {
   return (
-    <div>
+    <div className="usersDiv" >
       <h2>Current Users</h2>
       {users.map((item, index) => (
         <div key={index} className="listUser">

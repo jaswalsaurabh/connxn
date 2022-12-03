@@ -46,6 +46,8 @@ const App = () => {
           from="find"
           userObj={userObj}
         />
+      </div>
+      <div className="userComp" >
         <UsersComp users={users} userObj={userObj} />
       </div>
       {snackbarOpen && (
